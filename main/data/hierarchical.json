@@ -1,0 +1,100 @@
+{
+ "name": "hierarchical",
+ "children": [
+  {
+   "name": "Administrative",
+   "children": [
+   {"name":"Esther, Administrative Assistant","size":247},
+   {"name":"Kathleen, Operations Executive","size":4179},
+   {"name":"Richard, IT Adminstrator & Support/QA Engineer","size":1618},
+   {"name":"Yap, Sales Director, Australia & NZ","size":6324}
+]
+  },
+  
+  {
+   "name": "C-Suite",
+   "children": [{"name":"Adesh, CFO","size":15442},
+{"name":"Manish, CEO","size":26274},
+{"name":"Steve, CTO","size":13390}]
+  },
+  
+    {
+   "name": "Intern",
+   "children": [{"name":"Gabrielle, Intern 1","size":212},
+{"name":"Neha, Intern 2","size":214},
+{"name":"Ridwan, Intern 3","size":707},
+{"name":"Sandra, Intern 4","size":2868}]
+  },
+  
+    {
+   "name": "Marketing",
+   "children": [{"name":"Ananya, Senior Marketing Associate","size":11358},
+{"name":"Dawn, Director, Marketing and Channel Sales","size":2409},
+{"name":"Elizabeth, Director, Marketing","size":10574},
+{"name":"Malti, Director, Marketing","size":1437},
+{"name":"Oscar, Director of Marketing","size":3130},
+{"name":"Radha, Marketing Consultant","size":9359},
+{"name":"Regina, Marketing Consultant","size":712},
+{"name":"Richa, VP, Professional Services","size":8021},
+{"name":"Sahil, Marketing Associate","size":7858}]
+  },
+  
+    {
+   "name": "Operations",
+   "children": [{"name":"Alistair, VP, Operations","size":11559},
+{"name":"Sal, Operations Manager","size":5429}]
+  },
+  
+  {
+   "name": "Product",
+   "children": [{"name":"Greg, Product Mgr, Human Capital Mgmt Solutions","size":3791}]
+  },
+  {
+   "name": "Sales",
+   "children": [{"name":"Dev, Director, Business Development - ASEAN","size":3704},
+{"name":"Irene, Accounts Executive","size":1363},
+{"name":"James, Accounts Executive","size":845},
+{"name":"Jeff, Accounts Executive","size":1569},
+{"name":"Joe, Sales Associate","size":486},
+{"name":"Johnny, Sales Associate","size":19},
+{"name":"Jonathan, Sales Associate","size":34},
+{"name":"Leslie, Senior Business Development / Account Executive","size":1065},
+{"name":"Mark, Business Development Director, Aus & NZ","size":11978},
+{"name":"Nico, Intern 2","size":3801},
+{"name":"Robert, Intern 3","size":14},
+{"name":"Shams, Business Development Director, India & Middle East","size":5120},
+{"name":"Simon, Business Development Director, Europe","size":1801},
+{"name":"Stan, Regional Sales Director, North East","size":494},
+{"name":"Warren, Sales Director, Australia & NZ","size":8847}]
+  },
+  {
+   "name": "Senior Management",
+   "children": [{"name":"Brian, SVP/GM Americas","size":10189},
+{"name":"Michael, VP, Solution Services","size":5371},
+{"name":"Ricardo, VP, Professional Services","size":12248},
+{"name":"Roland, Director, LABS","size":3186},
+{"name":"Roshan, Director, LABS","size":108},
+{"name":"Tom, Director, professional Services & Customer Success","size":1559}]
+  },
+  {
+   "name": "Strategy",
+   "children": [{"name":"Annabel, Associate, Strategy & alliances","size":2216},
+{"name":"Anoshia, Analyst Reaserch & Strategy Associate","size":7080},
+{"name":"Arun, VP, Strategy & Alliances","size":29774},
+{"name":"Hana, Manager, Corporate Strategy & Alliance","size":9616},
+{"name":"Kunal, Director, Strategy & Alliances","size":16746}]
+  },
+  {
+   "name": "Technology",
+   "children": [{"name":"Bryan, Customer Infrastruture Adminstrator","size":3585},
+{"name":"Gladys, Dev/QA Engineer","size":667},
+{"name":"Graham, System Architect","size":3648},
+{"name":"Hansel, Programme/Engineer","size":692},
+{"name":"Karthik, Development Team Leader","size":1787},
+{"name":"Kit, Software Engineer - SQA Team","size":4559},
+{"name":"Lemuel, Software Developer","size":1830},
+{"name":"Paolo, Senior Developer","size":756},
+{"name":"Tim, Development Manager","size":8096}]
+  }
+ ]
+}

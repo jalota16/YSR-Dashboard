@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <!-- Site Properties -->
+  <title>Homepage</title>
+  <link rel="stylesheet" type="text/css" href="../dist/components/reset.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/site.css">
+
+  <link rel="stylesheet" type="text/css" href="../dist/components/container.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/grid.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/header.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/image.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/menu.css">
+
+  <link rel="stylesheet" type="text/css" href="../dist/components/divider.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/dropdown.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/segment.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/button.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/list.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/icon.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/sidebar.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/transition.css">
+
+  <style type="text/css">
+
+    .hidden.menu {
+      display: none;
+    }
+
+    .masthead.segment {
+      min-height: 700px;
+      padding: 1em 0em;
+    }
+    .masthead .logo.item img {
+      margin-right: 1em;
+    }
+    .masthead .ui.menu .ui.button {
+      margin-left: 0.5em;
+    }
+    .masthead h1.ui.header {
+      margin-top: 3em;
+      margin-bottom: 0em;
+      font-size: 4em;
+      font-weight: normal;
+    }
+    .masthead h2 {
+      font-size: 1.7em;
+      font-weight: normal;
+    }
+
+    .ui.vertical.stripe {
+      padding: 8em 0em;
+    }
+    .ui.vertical.stripe h3 {
+      font-size: 2em;
+    }
+    .ui.vertical.stripe .button + h3,
+    .ui.vertical.stripe p + h3 {
+      margin-top: 3em;
+    }
+    .ui.vertical.stripe .floated.image {
+      clear: both;
+    }
+    .ui.vertical.stripe p {
+      font-size: 1.33em;
+    }
+    .ui.vertical.stripe .horizontal.divider {
+      margin: 3em 0em;
+    }
+
+    .quote.stripe.segment {
+      padding: 0em;
+    }
+    .quote.stripe.segment .grid .column {
+      padding-top: 5em;
+      padding-bottom: 5em;
+    }
+
+    .footer.segment {
+      padding: 5em 0em;
+    }
+
+    .secondary.pointing.menu .toc.item {
+      display: none;
+    }
+
+    @media only screen and (max-width: 700px) {
+      .ui.fixed.menu {
+        display: none !important;
+      }
+      .secondary.pointing.menu .item,
+      .secondary.pointing.menu .menu {
+        display: none;
+      }
+      .secondary.pointing.menu .toc.item {
+        display: block;
+      }
+      .masthead.segment {
+        min-height: 350px;
+      }
+      .masthead h1.ui.header {
+        font-size: 2em;
+        margin-top: 1.5em;
+      }
+      .masthead h2 {
+        margin-top: 0.5em;
+        font-size: 1.5em;
+      }
+    }
+
+
+  </style>
+
+  <script src="assets/library/jquery.min.js"></script>
+  <script src="../dist/components/visibility.js"></script>
+  <script src="../dist/components/sidebar.js"></script>
+  <script src="../dist/components/transition.js"></script>
+  <script>
+  $(document)
+    .ready(function() {
+
+      // fix menu when passed
+      $('.masthead')
+        .visibility({
+          once: false,
+          onBottomPassed: function() {
+            $('.fixed.menu').transition('fade in');
+          },
+          onBottomPassedReverse: function() {
+            $('.fixed.menu').transition('fade out');
+          }
+        })
+      ;
+
+      // create sidebar and attach to menu open
+      $('.ui.sidebar')
+        .sidebar('attach events', '.toc.item')
+      ;
+
+    })
+  ;
+  </script>
+  <style>
+      body {
+           margin: 0;
+        padding: 0;
+        text-align: center;
+        font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+        font-size: 12px;
+      }
+      .wrapper {
+        margin: 0 auto;
+      }
+      .grid-layouts {
+        margin: 20px auto;
+        max-width: 1280px; 
+      }
+      .grid-layouts td{
+        vertical-align: top;
+      }
+      .grid-layouts h4 {
+        font-size: 12px;
+        margin: 0 0 10px;
+      }
+
+      #tooltip {
+        color: white;
+        opacity: .9;
+        background: #333;
+        padding: 5px;
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+        position: absolute;
+        z-index: 10;
+        visibility: hidden;
+        white-space: nowrap;
+        pointer-events: none;
+      }
+      #circle circle {
+        fill: none;
+        pointer-events: all;
+      }
+      path.group {
+        fill-opacity: .8;
+      }
+      path.chord {
+        fill-opacity: .8;
+        stroke: #000;
+        stroke-width: .25px;
+      }
+      #circle:hover path.fade {
+        display: none;
+      }
+      
+      rect.background {
+        fill: none;
+        pointer-events: all;
+      }
+
+      .axis {
+        shape-rendering: crispEdges;
+      }
+
+      .axis path, .axis line {
+        fill: none;
+        stroke: #000;
+        stroke-width: .5px;
+      }
+      .help-tip {
+        width: 600px;
+        margin: 10px 10px 10px 90px;
+        padding: 8px;
+        font-size: 12px;
+        text-align: center;
+        color: #333;
+        background: #f7f7f7;
+      }
+
+      #details > table {
+        width: 100%;
+        font-size: 12px;
+
+      }
+      #details > h3 {
+        padding-bottom: 16px;
+        border-bottom: 1px solid #ccc;
+      }
+      #details > table th,
+      #details > table td {
+        text-align: left;
+        vertical-align: top;
+        padding: 4px 2px;
+      }
+      #details > table ul {
+        margin: 0;
+        padding-left: 15px;
+      }
+    </style>
+</head>
+<body>
+
+<!-- Following Menu -->
+<div class="ui large top fixed hidden menu">
+  <div class="ui container">
+    <a class="active item">Home</a>
+    <a class="item">Work</a>
+    <a class="item">Company</a>
+    <a class="item">Careers</a>
+    <div class="right menu">
+      <div class="item">
+        <a class="ui button">Log in</a>
+      </div>
+      <div class="item">
+        <a class="ui primary button">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sidebar Menu -->
+<div class="ui vertical inverted sidebar menu">
+  <a class="active item">Home</a>
+  <a class="item">Work</a>
+  <a class="item">Company</a>
+  <a class="item">Careers</a>
+  <a class="item">Login</a>
+  <a class="item">Signup</a>
+</div>
+
+
+<!-- Page Contents -->
+<div class="pusher">
+  <div class="ui inverted vertical center aligned segment">
+
+    <div class="ui container">
+      <div class="ui large secondary inverted pointing menu">
+        <a class="toc item">
+          <i class="sidebar icon"></i>
+        </a>
+        <a class="active item">Home</a>
+        <a class="item" href = "departments.html">Departments</a>
+        <a  href ="employee_social_graph.html" class="item">Employee Networks</a>
+        <a href = "report.html" class="item">Reports</a>
+      </div>
+    </div>
+
+  </div>
+ <div class="ui container"><br></br>
+ </div>
+  <div class="ui container">
+    <div class="ui grid">
+     <!-- <center> -->
+	  <!-- <div class = "column"><h3> ANLY482 Analytics Practicum <br>Using Employee Social Networks to Better Understand T​urnover, Performance and Employee Engagement <br> By Team YSR </h3></div><center> -->
+      <!-- <div id="bar-chart"></div> -->
+      
+    </div>
+  </div>
+<br/>
+
+	<div class = "ui container">
+		 <table class="grid-layouts">
+        <tr>
+          <td id="chord-diagram">
+          </td>
+		  <td id="details-box"> 
+            <div id="details"><h3>Manish</h3><table><tbody><tr><th>Department:</th><td>C-Suite</td></tr><tr><th>Position:</th><td>CEO</td></tr><tr><th>Closest Contact:</th><td>	Arun [3770 Emails]</td></tr></tbody></table></div>
+          </td>
+		  </tr>
+		  <tr>
+		  <td>
+		  
+            <h4>Employment Type:
+              <span style="color:#c6dbef;">C-Suite</span> |
+              <span style="color:#fee6ce;">Marketing</span> |
+              <span style="color:#dadaeb;">Operations</span> | 
+              <span style="color:#c7e9c0;">Strategy</span> | 
+              <span style="color:#d9d9d9;">Senior Management</span> | 
+              <span style="color:#fcbba1;">Technology</span> |
+              <span style="color:#663399;">Sales</span> | 
+              <span style="color:#E9D460;">Administrative</span> | 
+              <span style="color:#86E2D5;">Intern</span> | 
+              <span style="color:#22313F;">Product</span> 
+            </h4>
+            <div id="tooltip"></div>
+            <p class="help-tip">Tips: Mouseover to focus on email from or to a particular employee. The thickness of line illustrates the frequency of email communication between employees.</p>   
+          </td>
+          
+        </tr>
+      </table>
+	
+	</div>
+
+  <div class="ui inverted vertical footer segment">
+    <div class="ui container">
+      <div class="ui stackable inverted divided equal height stackable grid">
+        <div class="three wide column">
+          <h4 class="ui inverted header">About</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">Sitemap</a>
+            <a href="#" class="item">Contact Us</a>
+          </div>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui inverted header">Services</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">How To Access</a>
+          </div>
+        </div>
+        <div class="seven wide column">
+          <h4 class="ui inverted header">Footer Header</h4>
+          <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="lib/d3.js"></script>
+    <script src="lib/queue.js"></script>
+    <script src="lib/underscore.js"></script>
+    <script src="js/mapper.js"></script>
+    <script>
+      //*******************************************************************
+      //  CREATE MATRIX AND MAP
+      //*******************************************************************
+      queue()
+        .defer(d3.json, 'data/email.json')
+        .defer(d3.csv, 'data/email.csv')
+        .defer(d3.csv, 'data/staff-emails.csv')
+        .await(function(err, matrix, mmap, smap) {
+			//console.log(mmap);
+			//console.log(smap);
+			//console.log(matrix);
+          if (err) console.log(err);
+          _.each(mmap, function (d, i) { 
+						//console.log(d);
+						//console.log(i);
+						d.id=i; d.data=d.color 
+						});
+          _.each(smap, function (s, i) {
+						//console.log("This is s:")
+						//console.log(s);		  
+						s.id=i; 
+						});
+          drawChords(matrix, mmap, smap);
+        });
+      //*******************************************************************
+      //  DRAW THE CHORD DIAGRAM
+      //*******************************************************************
+      function drawChords (matrix, mmap, smap) {
+	  
+        var w = 900, h = 800, r1 = h / 2, r0 = r1 - 120;
+
+        var chord = d3.layout.chord()
+            .padding(.02)
+            .sortSubgroups(d3.descending)
+            .sortChords(d3.descending);
+
+        var arc = d3.svg.arc()
+            .innerRadius(r0)
+            .outerRadius(r0 + 20);
+
+        var svg = d3.select("#chord-diagram").append("svg:svg")
+            .attr("width", w)
+            .attr("height", h)
+          .append("svg:g")
+            .attr("id", "circle")
+            .attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
+
+            svg.append("circle")
+                .attr("r", r0 + 20);
+
+        var rdr = chordRdr(matrix, mmap);
+        chord.matrix(matrix);
+
+        var g = svg.selectAll("g.group")
+            .data(chord.groups())
+          .enter().append("svg:g")
+            .attr("class", "group")
+            .on("mouseover", mouseover)
+            .on("mouseout", function (d) { d3.select("#tooltip").style("visibility", "hidden") })
+            .on("click", showDetails);
+
+        g.append("svg:path")
+            .style("stroke", "grey")
+            .style("fill", function(d) { return rdr(d).gdata; })
+            .attr("d", arc);
+
+        g.append("svg:text")
+            .each(function(d) { d.angle = (d.startAngle + d.endAngle) / 2; })
+            .attr("dy", ".35em")
+            .style("font-family", "Century Gothic, helvetica, arial, sans-serif")
+            .style("font-size", "11px")
+            .attr("text-anchor", function(d) { return d.angle > Math.PI ? "end" : null; })
+            .attr("transform", function(d) {
+              return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")"
+                  + "translate(" + (r0 + 26) + ")"
+                  + (d.angle > Math.PI ? "rotate(180)" : "");
+            })
+            .text(function(d) { return rdr(d).gname; });
+
+          var chordPaths = svg.selectAll("path.chord")
+                .data(chord.chords())
+              .enter().append("svg:path")
+                .attr("class", "chord")
+                .style("stroke", "grey")
+                .style("fill", function(d) { return _.where(mmap, {id: d.source.index })[0].data;; })
+                .attr("d", d3.svg.chord().radius(r0))
+                .on("mouseover", function (d) {
+                  d3.select("#tooltip")
+                    .style("visibility", "visible")
+                    .html(chordTip(rdr(d)))
+                    .style("top", function () { return (d3.event.pageY - 100)+"px"})
+                    .style("left", function () { return (d3.event.pageX - 100)+"px";})
+                })
+                .on("mouseout", function (d) { d3.select("#tooltip").style("visibility", "hidden") });
+
+          function chordTip (d) {
+            var p = d3.format(""), q = d3.format(",.2r")
+            return ""
+              +  d.sname + " → " + d.tname
+              + ": " + p(d.svalue) + "<br/>"
+              + d.tname + " → " + d.sname
+              + ": " + p(d.tvalue) + "<br/>";
+          }
+
+          function groupTip (d) {
+            var p = d3.format(".3r"), q = d3.format(",.2r")
+            return ""
+                + d.gname + " : " + p(d.gvalue) + "<br/>";
+            }
+
+          function mouseover(d, i) {
+            d3.select("#tooltip")
+              .style("visibility", "visible")
+              .html(groupTip(rdr(d)))
+              .style("top", function () { return (d3.event.pageY - 80)+"px"})
+              .style("left", function () { return (d3.event.pageX - 130)+"px";})
+
+            chordPaths.classed("fade", function(p) {
+              return p.source.index != i
+                  && p.target.index != i;
+            });
+          }
+
+          function detailCnt (d) {
+            c = _.where(smap, { Name: d.gname });
+            var html = "<h3>" + d.gname + "</h3><table>" 
+              + "<tr><th>Department:</th><td>" + c[0].Department + "</td></tr>"
+              + "<tr><th>Position:</th><td>" + c[0].Position + "</td></tr>"
+			  + "<tr><th>Closest Contact:</th><td>"
+              ;
+			var max = 0;
+			var numEmails = 0;
+            var list = {};
+            _.each(c, function(r) {
+			numEmails = parseInt(r["No_of_Email"]);
+			if(numEmails > max){
+					max = numEmails;
+					list.receiver = r.Receiver;
+					list.value = numEmails;
+				} 
+            
+            });
+            console.log(list);
+            return html + list.receiver + " ["+list.value+" Emails]"+"</td></tr> "+"</td></tr></table>";
+          }
+
+          function showDetails(d, i) {
+            d3.select("#details")
+              .html(detailCnt(rdr(d)));
+
+            chordPaths.classed("fade", function(p) {
+              return p.source.index != i
+                  && p.target.index != i;
+            });
+          }
+      }
+
+
+      // bar chart
+      
+      var margin = {top: 30, right: 300, bottom: 0, left: 400},
+          width = 1280 - margin.left - margin.right,
+          height = 265 - margin.top - margin.bottom;
+
+      var x = d3.scale.linear()
+          .range([0, width]);
+
+      var barHeight = 15;
+
+      var color = d3.scale.ordinal()
+          .range(["#3182bd", "#9ecae1"]);
+
+      var duration = 750,
+          delay = 25;
+
+      var partition = d3.layout.partition()
+          .value(function(d) { return d.size; });
+
+      var xAxis = d3.svg.axis()
+          .scale(x)
+          .orient("top");
+
+      var svg = d3.select("#bar-chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      svg.append("rect")
+          .attr("class", "background")
+          .attr("width", width)
+          .attr("height", height)
+          .on("click", up);
+
+      svg.append("g")
+          .attr("class", "x axis");
+
+      d3.json("data/hierarchical.json", function(error, root) {
+        partition.nodes(root);
+        x.domain([0, root.value]).nice();
+        down(root, 0);
+      });
+
+      function down(d, i) {
+        if (!d.children || this.__transition__) return;
+        var end = duration + d.children.length * delay;
+
+        // Mark any currently-displayed bars as exiting.
+        var exit = svg.selectAll(".enter")
+            .attr("class", "exit");
+
+        // Entering nodes immediately obscure the clicked-on bar, so hide it.
+        exit.selectAll("rect").filter(function(p) { return p === d; })
+            .style("fill-opacity", 1e-6);
+
+        // Enter the new bars for the clicked-on data.
+        // Per above, entering bars are immediately visible.
+        var enter = bar(d)
+            .attr("transform", stack(i))
+            .style("opacity", 1);
+
+        // Have the text fade-in, even though the bars are visible.
+        // Color the bars as parents; they will fade to children if appropriate.
+        enter.select("text").style("fill-opacity", 1e-6);
+        enter.select("rect").style("fill", color(true));
+
+        // Update the x-scale domain.
+        x.domain([0, d3.max(d.children, function(d) { return d.value; })]).nice();
+
+        // Update the x-axis.
+        svg.selectAll(".x.axis").transition()
+            .duration(duration)
+            .call(xAxis);
+
+        // Transition entering bars to their new position.
+        var enterTransition = enter.transition()
+            .duration(duration)
+            .delay(function(d, i) { return i * delay; })
+            .attr("transform", function(d, i) { return "translate(0," + barHeight * i * 1.2 + ")"; });
+
+        // Transition entering text.
+        enterTransition.select("text")
+            .style("fill-opacity", 1);
+
+        // Transition entering rects to the new x-scale.
+        enterTransition.select("rect")
+            .attr("width", function(d) { return x(d.value); })
+            .style("fill", function(d) { return color(!!d.children); });
+
+        // Transition exiting bars to fade out.
+        var exitTransition = exit.transition()
+            .duration(duration)
+            .style("opacity", 1e-6)
+            .remove();
+
+        // Transition exiting bars to the new x-scale.
+        exitTransition.selectAll("rect")
+            .attr("width", function(d) { return x(d.value); });
+
+        // Rebind the current node to the background.
+        svg.select(".background")
+            .datum(d)
+          .transition()
+            .duration(end);
+
+        d.index = i;
+      }
+
+      function up(d) {
+        if (!d.parent || this.__transition__) return;
+        var end = duration + d.children.length * delay;
+
+        // Mark any currently-displayed bars as exiting.
+        var exit = svg.selectAll(".enter")
+            .attr("class", "exit");
+
+        // Enter the new bars for the clicked-on data's parent.
+        var enter = bar(d.parent)
+            .attr("transform", function(d, i) { return "translate(0," + barHeight * i * 1.2 + ")"; })
+            .style("opacity", 1e-6);
+
+        // Color the bars as appropriate.
+        // Exiting nodes will obscure the parent bar, so hide it.
+        enter.select("rect")
+            .style("fill", function(d) { return color(!!d.children); })
+          .filter(function(p) { return p === d; })
+            .style("fill-opacity", 1e-6);
+
+        // Update the x-scale domain.
+        x.domain([0, d3.max(d.parent.children, function(d) { return d.value; })]).nice();
+
+        // Update the x-axis.
+        svg.selectAll(".x.axis").transition()
+            .duration(duration)
+            .call(xAxis);
+
+        // Transition entering bars to fade in over the full duration.
+        var enterTransition = enter.transition()
+            .duration(end)
+            .style("opacity", 1);
+
+        // Transition entering rects to the new x-scale.
+        // When the entering parent rect is done, make it visible!
+        enterTransition.select("rect")
+            .attr("width", function(d) { return x(d.value); })
+            .each("end", function(p) { if (p === d) d3.select(this).style("fill-opacity", null); });
+
+        // Transition exiting bars to the parent's position.
+        var exitTransition = exit.selectAll("g").transition()
+            .duration(duration)
+            .delay(function(d, i) { return i * delay; })
+            .attr("transform", stack(d.index));
+
+        // Transition exiting text to fade out.
+        exitTransition.select("text")
+            .style("fill-opacity", 1e-6);
+
+        // Transition exiting rects to the new scale and fade to parent color.
+        exitTransition.select("rect")
+            .attr("width", function(d) { return x(d.value); })
+            .style("fill", color(true));
+
+        // Remove exiting nodes when the last child has finished transitioning.
+        exit.transition()
+            .duration(end)
+            .remove();
+
+        // Rebind the current parent to the background.
+        svg.select(".background")
+            .datum(d.parent)
+          .transition()
+            .duration(end);
+      }
+
+      // Creates a set of bars for the given data node, at the specified index.
+      function bar(d) {
+        var bar = svg.insert("g", ".y.axis")
+            .attr("class", "enter")
+            .attr("transform", "translate(0,5)")
+          .selectAll("g")
+            .data(d.children)
+          .enter().append("g")
+            .style("cursor", function(d) { return !d.children ? null : "pointer"; })
+            .on("click", down);
+
+        bar.append("text")
+            .attr("x", -6)
+            .attr("y", barHeight / 2)
+            .attr("dy", ".35em")
+            .style("text-anchor", "end")
+            .text(function(d) { return d.name; });
+
+        bar.append("rect")
+            .attr("width", function(d) { return x(d.value); })
+            .attr("height", barHeight);
+
+        return bar;
+      }
+
+      // A stateful closure for stacking bars horizontally.
+      function stack(i) {
+        var x0 = 0;
+        return function(d) {
+          var tx = "translate(" + x0 + "," + barHeight * i * 1.2 + ")";
+          x0 += x(d.value);
+          return tx;
+        };
+      }
+    </script>
+</body>
+
+</html>
